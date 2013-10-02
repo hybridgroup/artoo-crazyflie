@@ -2,27 +2,37 @@ require 'artoo/adaptors/adaptor'
 
 module Artoo
   module Adaptors
-    # Connect to a crazyflie device
-    # @see device documentation for more information
+    # Connect to a crazyflie quadcopter
+    # @see crazyflie documentation for more information
     class Crazyflie < Adaptor
-      finalizer :finalize
-      attr_reader :device
+      attr_reader :crazyflie
 
-      # Closes connection with device if connected
-      # @return [Boolean]
-      def finalize
-      end
-
-      # Creates a connection with device
+      # Creates a connection with crazyflie
       # @return [Boolean]
       def connect
+        require 'crubyflie' unless defined?(::Crubyflie)
+
+        @crazyflie = Crazyflie.new('/tmp/crubyflie') # TODO: a real temp file location?
+        @crazyflie.open_link(port)
+
         super
       end
 
       # Closes connection with device
       # @return [Boolean]
       def disconnect
+        @crazyflie.close_link
+
         super
+      end
+
+      # device info interface
+      def firmware_name
+        "Crazyflie"
+      end
+
+      def version
+        Crubyflie::VERSION
       end
 
       # Uses method missing to call device actions
