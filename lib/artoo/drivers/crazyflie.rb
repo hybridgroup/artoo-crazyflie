@@ -102,7 +102,7 @@ module Artoo
       end
 
       def send_command
-        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode)
+#        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode)
       end
     end
   end

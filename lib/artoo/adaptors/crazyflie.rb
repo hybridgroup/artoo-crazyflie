@@ -11,10 +11,16 @@ module Artoo
       # @return [Boolean]
       def connect
         require 'crubyflie' unless defined?(::Crubyflie)
-
-        @crazyflie = Crazyflie.new('/tmp/crubyflie') # TODO: a real temp file location?
-        @crazyflie.open_link(port)
-
+        @crazyflie = ::Crubyflie::Crazyflie.new('/tmp/test')
+        source = additional_params[:source] || ""
+        if source.empty?
+          flies = @crazyflie.scan_interface
+          if flies.empty?
+            raise "No crazyflies!"
+          end
+          source = flies.first
+        end
+        t = @crazyflie.open_link(source)
         super
       end
 
@@ -38,7 +44,7 @@ module Artoo
       # Uses method missing to call device actions
       # @see device documentation
       def method_missing(method_name, *arguments, &block)
-        device.send(method_name, *arguments, &block)
+        @crazyflie.send(method_name, *arguments, &block)
       end
     end
   end
