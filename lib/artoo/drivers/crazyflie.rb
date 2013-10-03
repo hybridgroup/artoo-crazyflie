@@ -60,33 +60,28 @@ module Artoo
         @thrust = deg
       end
 
-      def up(deg)
+      def forward(deg)
         @pitch = deg
       end
 
-      def down(deg)
+      def backward(deg)
         @pitch = -deg
       end
 
       def left(deg)
-        @roll = -1 * deg
+        @roll = -deg
       end
 
       def right(deg)
         @roll = deg
       end
 
-      def forward(deg)
-        @roll = 0
+      def turn_left(deg)
+        @yaw = -deg
       end
 
-      def backward(deg)
-      end
-
-      def turn_left
-      end
-
-      def turn_right
+      def turn_right(deg)
+        @yaw = deg
       end
       
       def set_thrust_on
