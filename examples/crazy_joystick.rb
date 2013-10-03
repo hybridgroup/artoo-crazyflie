@@ -36,7 +36,6 @@ def handle_joystick data
       else
         drone.turn_left(0)
       end 
-
     end
 
     if data[:s] == 1
