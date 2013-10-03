@@ -6,7 +6,7 @@ module Artoo
     class Crazyflie < Driver
       COMMANDS = [:start, :stop, :hover, :land, :take_off, :emergency, 
                   :up, :down, :left, :right, :forward, :backward, 
-                  :turn_left, :turn_right].freeze
+                  :turn_left, :turn_right, :power].freeze
 
 
       attr_reader :roll, :pitch, :yaw, :thrust, :xmode
@@ -56,33 +56,31 @@ module Artoo
       def take_off
       end
 
+      def power(deg)
+        @thrust = deg
+      end
+
       def up(deg)
         @pitch = deg
-        set_thrust_on
       end
 
       def down(deg)
         @pitch = -deg
-        set_thrust_on
       end
 
       def left(deg)
         @roll = -1 * deg
-        set_thrust_on
       end
 
       def right(deg)
         @roll = deg
-        set_thrust_on
       end
 
       def forward(deg)
         @roll = 0
-        set_thrust_on
       end
 
       def backward(deg)
-        set_thrust_on
       end
 
       def turn_left
@@ -90,9 +88,7 @@ module Artoo
 
       def turn_right
       end
-
-    private
-
+      
       def set_thrust_on
         @thrust = 40000
       end
@@ -100,6 +96,8 @@ module Artoo
       def set_thrust_off
         @thrust = 0
       end
+
+    private
 
       def send_command
         connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode)

@@ -5,5 +5,6 @@ device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.
 
 work do
   drone.up(0)
+  drone.set_thrust_on
   after(1.seconds) {drone.stop}
 end
