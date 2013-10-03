@@ -5,7 +5,7 @@ module Artoo
     # Connect to a crazyflie quadcopter
     # @see crazyflie documentation for more information
     class Crazyflie < Adaptor
-      attr_reader :crazyflie
+      attr_reader :crazyflie, :commander
 
       # Creates a connection with crazyflie
       # @return [Boolean]
@@ -20,7 +20,8 @@ module Artoo
           end
           source = flies.first
         end
-        t = @crazyflie.open_link(source)
+        @crazyflie.open_link(source)
+        @commander = ::Crubyflie::Commander.new(@crazyflie)
         super
       end
 
