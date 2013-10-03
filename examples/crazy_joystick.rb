@@ -3,8 +3,8 @@ require 'artoo'
 connection :crazyflie, :adaptor => :crazyflie
 device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.1
 
-connection :joystick, :adaptor => :sdl_joystick
-device :controller, :driver => :sdl_joystick, :connection => :joystick, :interval => 0.1
+connection :joystick, :adaptor => :joystick
+device :controller, :driver => :joystick, :connection => :joystick, :interval => 0.1
 
 work do
   on controller, :joystick => proc { |*value|

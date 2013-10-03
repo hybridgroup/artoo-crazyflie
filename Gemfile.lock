@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/hybridgroup/artoo-joystick.git
+  revision: ef2f9bea86b0a7189d3da4f589dbb83e474be4eb
+  specs:
+    artoo-joystick (0.1.0)
+      artoo (>= 1.2.2)
+      rubysdl
+
 PATH
   remote: .
   specs:
@@ -27,9 +35,11 @@ GEM
       rubysdl
       trollop
     ffi (1.9.0)
+    ffi (1.9.0-java)
     http (0.5.0)
       http_parser.rb
     http_parser.rb (0.6.0.beta.2)
+    http_parser.rb (0.6.0.beta.2-java)
     libusb (0.3.4)
       ffi (>= 1.0)
     metaclass (0.0.1)
@@ -40,10 +50,16 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.8.0)
     nio4r (0.5.0)
+    nio4r (0.5.0-java)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry (0.9.12.2-java)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      spoon (~> 0.0)
     rake (10.1.0)
     reel (0.4.0)
       celluloid (>= 0.15.1)
@@ -53,6 +69,8 @@ GEM
       websocket_parser (>= 0.1.4)
     rubysdl (2.1.2)
     slop (3.4.6)
+    spoon (0.0.4)
+      ffi
     thor (0.18.1)
     timers (1.1.0)
     trollop (2.0)
@@ -60,10 +78,12 @@ GEM
       http
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   artoo-crazyflie!
+  artoo-joystick!
   minitest (>= 5.0)
   minitest-happy
   mocha (>= 0.14.0)
