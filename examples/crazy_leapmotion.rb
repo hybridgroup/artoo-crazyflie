@@ -8,34 +8,24 @@ device :leap, :connection => :leap, :driver => :leapmotion
 
 work do
   on leap, :hand => :wave
-
   every(0.01) do
-    if thrust >= power
-      power = thrust
-    elsif power < degrade
-      power = 0
-    else
-      power = power - degrade
-    end
-    drone.power(power)
+    handle_thrust
   end
-
 end
 
-def degrade
-  700
-end
-
-def power= val
-  @power = val
-end
-
-def power
-  @power ||= 0
-end
-
-def thrust
-  @thrust ||= 0
+def handle_thrust
+  @degrade = 700
+  @power = 0 if @power.nil?
+  @thrust = 0 if @thrust.nil?
+  if @thrust >= @power
+    @power = @thrust
+    @thrust = 0
+  elsif @power < @degrade
+    @power = 0
+  else
+    @power = @power - @degrade
+  end
+  drone.power(@power)
 end
 
 def wave sender, hand
