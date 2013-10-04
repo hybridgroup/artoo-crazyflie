@@ -13,26 +13,26 @@ work do
 end
 
 def handle_joystick data
-    thrust_scale = 1.62
-    deg_scale = 0.00137
-    degrade = 2000
-
+    thrust_scale = 1.46
+    yaw_scale = 0.000191753
+    deg_scale = 0.00091
+    degrade = 700
+    @power = 0 if @power.nil?
     if data[:s] == 0
-      if data[:y] < 0
-        @power = data[:y].abs * thrust_scale
+      thrust = (data[:y] < 0) ? (data[:y].abs * thrust_scale) : 0
+      if thrust >= @power
+        @power = thrust
+      elsif @power < degrade
+        @power = 0
       else
-        if @power.nil? || @power < degrade
-          @power = 0
-        else
-          @power = @power - degrade
-        end
+        @power = @power - degrade
       end
       drone.power(@power)
 
       if data[:x] > 0
-        drone.turn_right(data[:x].abs * deg_scale)
+        drone.turn_right(data[:x].abs * yaw_scale)
       elsif data[:x] < 0
-        drone.turn_left(data[:x].abs * deg_scale)
+        drone.turn_left(data[:x].abs * yaw_scale)
       else
         drone.turn_left(0)
       end 
