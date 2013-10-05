@@ -4,8 +4,9 @@ connection :crazyflie, :adaptor => :crazyflie
 device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.01
 
 connection :joystick, :adaptor => :joystick
-#device :controller, :driver => :ps3, :connection => :joystick, :interval => 0.01
 device :controller, :driver => :xbox360, :connection => :joystick, :interval => 0.01
+#device :controller, :driver => :ps3, :connection => :joystick, :interval => 0.01
+#device :controller, :driver => :joystick, :connection => :joystick, :interval => 0.01
 
 work do
   on controller, :joystick_0 => proc { |caller, data|
