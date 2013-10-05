@@ -1,6 +1,6 @@
 # Artoo Adaptor For Crazyflie
 
-This repository contains the Artoo (http://artoo.io/) adaptor for the Crazyflie quadcopter (http://www.bitcraze.se/).
+This repository contains the Artoo (http://artoo.io/) adaptor for the Crazyflie micro-quadcopter (http://www.bitcraze.se/).
 
 Artoo is a open source micro-framework for robotics using Ruby.
 
@@ -21,15 +21,13 @@ gem install artoo-crazyflie
 ```ruby
 require 'artoo'
 
-connection :crazyflie, :adaptor => :crazyflie, :port => 'radio://0/10/250K'
-device :drone, :driver => :crazyflie, :connection => :crazyflie
+connection :crazyflie, :adaptor => :crazyflie
+device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.1
 
 work do
-  drone.start
-  drone.take_off
-  
-  after(25.seconds) { drone.hover.land }
-  after(30.seconds) { drone.stop }
+  drone.forward(0)
+  drone.set_thrust_on
+  after(1.seconds) {drone.stop}
 end
 ```
 
