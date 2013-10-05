@@ -1,8 +1,33 @@
+GIT
+  remote: git://github.com/hybridgroup/artoo-joystick.git
+  revision: 1a8e15c7582b28a6fd4c4f493aff9358e4ee6a52
+  branch: ffi
+  specs:
+    artoo-joystick (0.1.0)
+      artoo (>= 1.2.2)
+      ruby-sdl-ffi
+
+GIT
+  remote: git://github.com/hybridgroup/crubyflie.git
+  revision: 36c10081340c5862b8d3e96a0cad611dae2a9804
+  specs:
+    crubyflie (0.1.3)
+      libusb
+      trollop
+
+GIT
+  remote: git://github.com/hybridgroup/ruby-sdl-ffi.git
+  revision: 5217aa6fc309b55282f6e89ba660bd502806c2f3
+  specs:
+    ruby-sdl-ffi (0.4)
+      nice-ffi (>= 0.2)
+
 PATH
   remote: .
   specs:
     artoo-crazyflie (0.0.1)
       artoo (>= 1.3.0)
+      artoo-joystick
       hybridgroup-crubyflie
 
 GEM
@@ -16,6 +41,9 @@ GEM
       rake
       reel (~> 0.4.0)
       thor (~> 0.18.1)
+    artoo-joystick (0.2.0)
+      artoo (>= 1.3.0)
+      hybridgroup-ruby-sdl-ffi
     celluloid (0.15.1)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -31,6 +59,8 @@ GEM
     hybridgroup-crubyflie (0.1.4)
       libusb
       trollop
+    hybridgroup-ruby-sdl-ffi (0.4.1)
+      nice-ffi (>= 0.2)
     libusb (0.3.4)
       ffi (>= 1.0)
     metaclass (0.0.1)
@@ -40,6 +70,8 @@ GEM
     mocha (0.14.0)
       metaclass (~> 0.0.1)
     multi_json (1.8.1)
+    nice-ffi (0.4)
+      ffi (>= 0.5.0)
     nio4r (0.5.0)
     nio4r (0.5.0-java)
     pry (0.9.12.2)
@@ -73,6 +105,9 @@ PLATFORMS
 
 DEPENDENCIES
   artoo-crazyflie!
+  artoo-joystick!
+  crubyflie!
   minitest (>= 5.0)
   minitest-happy
   mocha (>= 0.14.0)
+  ruby-sdl-ffi!
