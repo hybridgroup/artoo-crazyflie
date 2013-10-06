@@ -9,7 +9,7 @@ module Artoo
                   :turn_left, :turn_right, :power].freeze
 
 
-      attr_reader :roll, :pitch, :yaw, :thrust, :xmode
+      attr_reader :roll, :pitch, :yaw, :thrust, :xmode, :hover_mode
 
       def initialize(params={})
         @roll = 0
@@ -17,6 +17,7 @@ module Artoo
         @yaw = 0
         @thrust = 0
         @xmode = false # TODO what is this?
+        @hover_mode = 0
         super
       end
 
@@ -40,14 +41,15 @@ module Artoo
         @pitch = 0
         @yaw = 0
         @thrust = 10001
+        @hover_mode = 0
       end
 
       def stop
         set_thrust_off
       end
 
-      def hover
-        # TODO: call firmware that can do this?
+      def hover(active=true)
+        @hover_mode = (active ? 1 : 0)
       end
 
       def land
@@ -95,7 +97,7 @@ module Artoo
     private
 
       def send_command
-        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode)
+        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode, hover_mode)
       end
     end
   end
