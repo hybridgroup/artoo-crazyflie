@@ -49,7 +49,6 @@ module Artoo
       end
 
       def hover(h=:start)
-        puts h
         if h == :start
           @hover_mode = 1
           set_thrust_hover
@@ -57,7 +56,6 @@ module Artoo
           @hover_mode = 0
           set_thrust_off
         end
-        puts "hover_mode=#{@hover_mode}"
       end
 
       def land
