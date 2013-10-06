@@ -48,8 +48,16 @@ module Artoo
         set_thrust_off
       end
 
-      def hover(active=true)
-        @hover_mode = (active ? 1 : 0)
+      def hover(h=:start)
+        puts h
+        if h == :start
+          @hover_mode = 1
+          set_thrust_hover
+        else
+          @hover_mode = 0
+          set_thrust_off
+        end
+        puts "hover_mode=#{@hover_mode}"
       end
 
       def land
@@ -94,9 +102,14 @@ module Artoo
         @thrust = 0
       end
 
+      def set_thrust_hover
+        @thrust = 32597
+      end
+
     private
 
       def send_command
+        set_thrust_hover if hover_mode == 1
         connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode, hover_mode)
       end
     end

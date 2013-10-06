@@ -60,12 +60,10 @@ end
 
 def handle_hover caller
   if @hover
-    puts "hover off"
     @hover = false
-    drone.hover(false)
+    drone.hover(:stop)
   else
-    puts "hover on"
     @hover = true
-    drone.hover(false)
-  end
+    drone.hover
+  end  
 end
