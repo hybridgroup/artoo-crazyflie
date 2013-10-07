@@ -47,7 +47,7 @@ Once you have updated the Crazyflie firmware, you will NEED to use the following
 connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
 ```
 
-If you do not use `supports_hover => true` in your connection code tto the Crazyflie, it will go crazy out of control. You have been warned...
+If you do not add `:supports_hover => true` to your connection code to the Crazyflie, it will go crazy out of control as you as you try to connect to it. You have been warned...
 ```
 
 ## Contributing
