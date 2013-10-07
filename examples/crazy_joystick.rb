@@ -1,23 +1,20 @@
 require 'artoo'
 
-connection :crazyflie, :adaptor => :crazyflie
+connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
 device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.01
 
 connection :joystick, :adaptor => :joystick
-device :controller, :driver => :xbox360, :connection => :joystick, :interval => 0.01
-#device :controller, :driver => :ps3, :connection => :joystick, :interval => 0.01
+#device :controller, :driver => :xbox360, :connection => :joystick, :interval => 0.01
+device :controller, :driver => :ps3, :connection => :joystick, :interval => 0.01
 #device :controller, :driver => :joystick, :connection => :joystick, :interval => 0.01
 
 work do
-  on controller, :joystick_0 => proc { |caller, data|
-    handle_joystick_0 data
-  }
-  on controller, :joystick_1 => proc { |caller, data|
-    handle_joystick_1 data
-  }
+  on controller, :joystick_0 => :handle_joystick_0
+  on controller, :joystick_1 => :handle_joystick_1
+  on controller, :button_x => :handle_hover
 end
 
-def handle_joystick_0 data
+def handle_joystick_0 caller, data
   thrust_scale = 1.46
   yaw_scale = 0.000191753
   degrade = 700
@@ -41,7 +38,7 @@ def handle_joystick_0 data
   end
 end
 
-def handle_joystick_1 data
+def handle_joystick_1 caller, data
   deg_scale = 0.00091
 
   if data[:y] < 0
@@ -59,4 +56,14 @@ def handle_joystick_1 data
   else
     drone.left(0)
   end 
+end
+
+def handle_hover caller
+  if @hover
+    @hover = false
+    drone.hover(:stop)
+  else
+    @hover = true
+    drone.hover
+  end  
 end
