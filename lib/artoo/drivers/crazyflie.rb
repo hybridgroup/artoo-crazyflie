@@ -40,7 +40,7 @@ module Artoo
         @roll = 0
         @pitch = 0
         @yaw = 0
-        @thrust = 10001
+        power(10001)
         @hover_mode = 0
       end
 
@@ -59,6 +59,15 @@ module Artoo
       end
 
       def land
+        drone.power(32000)
+
+        after(1) {
+          drone.power(22000)
+        }
+
+        after(1.5) {
+          drone.stop
+        }
       end
 
       def take_off
@@ -93,15 +102,15 @@ module Artoo
       end
       
       def set_thrust_on
-        @thrust = 40000
+        power(40000)
       end
 
       def set_thrust_off
-        @thrust = 0
+        power(0)
       end
 
       def set_thrust_hover
-        @thrust = 32597
+        power(32597)
       end
 
     private
