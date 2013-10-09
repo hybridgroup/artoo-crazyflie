@@ -37,11 +37,11 @@ module Artoo
       end
 
       def start
+        @hover_mode = 0
         @roll = 0
         @pitch = 0
         @yaw = 0
         power(10001)
-        @hover_mode = 0
       end
 
       def stop
@@ -58,15 +58,12 @@ module Artoo
         end
       end
 
-      def land
-        drone.power(32000)
+      def land(secs=1)
+        @hover_mode = 0
+        power(32000)
 
-        after(1) {
-          drone.power(22000)
-        }
-
-        after(1.5) {
-          drone.stop
+        after(secs) {
+          power(22000)
         }
       end
 
