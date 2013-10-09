@@ -67,7 +67,13 @@ module Artoo
         }
       end
 
-      def take_off
+      def take_off(secs=1)
+        forward(0)
+        set_thrust_on
+
+        after(secs) {
+          power(33000)
+        }
       end
 
       def power(deg)
