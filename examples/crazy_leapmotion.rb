@@ -1,6 +1,6 @@
 require 'artoo'
 
-connection :crazyflie, :adaptor => :crazyflie
+connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
 device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.01
 
 connection :leap, :adaptor => :leapmotion, :port => '127.0.0.1:6437'
@@ -8,7 +8,7 @@ device :leap, :connection => :leap, :driver => :leapmotion
 
 work do
   on leap, :hand => :wave
-  every(0.01) do
+  every(0.1) do
     handle_thrust
   end
 end
