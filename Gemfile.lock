@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    artoo-crazyflie (0.3.0)
+    artoo-crazyflie (0.4.0)
       artoo (>= 1.4.0)
       hybridgroup-crubyflie
 
@@ -23,11 +23,9 @@ GEM
       nio4r (>= 0.5.0)
     coderay (1.0.9)
     ffi (1.9.0)
-    ffi (1.9.0-java)
     http (0.5.0)
       http_parser.rb
     http_parser.rb (0.6.0.beta.2)
-    http_parser.rb (0.6.0.beta.2-java)
     hybridgroup-crubyflie (0.1.4)
       libusb
       trollop
@@ -41,16 +39,10 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.8.2)
     nio4r (0.5.0)
-    nio4r (0.5.0-java)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry (0.9.12.2-java)
-      coderay (~> 1.0.5)
-      method_source (~> 0.8)
-      slop (~> 3.4)
-      spoon (~> 0.0)
     rake (10.1.0)
     reel (0.4.0)
       celluloid (>= 0.15.1)
@@ -59,8 +51,6 @@ GEM
       http_parser.rb (>= 0.6.0.beta.2)
       websocket_parser (>= 0.1.4)
     slop (3.4.6)
-    spoon (0.0.4)
-      ffi
     thor (0.18.1)
     timers (1.1.0)
     trollop (2.0)
