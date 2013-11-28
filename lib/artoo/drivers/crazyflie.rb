@@ -119,8 +119,7 @@ module Artoo
     private
 
       def send_command
-        set_thrust_hover if hover_mode == 1
-        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode, hover_mode)
+        connection.commander.send_setpoint(roll, pitch, yaw, thrust, xmode)
       end
     end
   end

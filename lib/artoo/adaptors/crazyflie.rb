@@ -20,7 +20,6 @@ module Artoo
           end
           source = flies.first
         end
-        @crazyflie.supports_hover = additional_params[:supports_hover] || false
         @crazyflie.open_link(source)
         @commander = ::Crubyflie::Commander.new(@crazyflie)
         super

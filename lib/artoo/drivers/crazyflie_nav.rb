@@ -4,7 +4,7 @@ module Artoo
   module Drivers
     # The crazyflie driver behaviors
     class CrazyflieNav < Driver
-      COMMANDS = [:start_get_value, :toc, :values, :log].freeze
+      COMMANDS = [:set_value, :start_get_value, :toc, :values, :log].freeze
 
       attr_reader :values, :log
 
@@ -24,6 +24,12 @@ module Artoo
 
       def toc
         connection.param.toc
+      end
+
+      def set_value(name, value)        
+        connection.param.set_value(name, value) do |val|
+          @values[value] = val
+        end
       end
 
       def start_get_value(value)        
