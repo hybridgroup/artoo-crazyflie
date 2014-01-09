@@ -39,16 +39,22 @@ If you are have a USB 3.0 port, you might run into this issue http://stackoverfl
 
 ## Crazyflie Hover
 
-To use Crazyflie with the hover command, requires installing the https://bitbucket.org/omwdunkley/crazyflie-firmware fork of the Crazyflie firmware. The easiest way to currently do this, is to install the Crazyflie PC Client, download the 'hover' branch BIN file from here https://bitbucket.org/omwdunkley/crazyflie-firmware/downloads/cflie.bin and then use the Crazyflie PC tools to update the Crazyflie firmware.
+To use the Crazyflie beta 'hover' mode, you will need to install the latest beta of firmware to the Crazyflie itself from https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2013.11-beta1.bin
 
-Once you have updated the Crazyflie firmware, you will NEED to use the following syntax in your Artoo code to use it:
+Once you have updated the Crazyflie firmware, to trigger the hover mode on, use the `flightmode.althold` param on the Crazyflie like this:
 
 ```ruby
-connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
+  @crazyflie.param.set_value('flightmode.althold', true)
 ```
 
-If you do not add `:supports_hover => true` to your connection code to the Crazyflie, it will go crazy out of control as you as you try to connect to it. You have been warned...
+Please note that the Crazyflie's interprets hover to mean "maintain altitude", not "stay in one place", so you will need to control horizontal positioning yourself.
 
+To turn hover mode off:
+
+```ruby
+  @crazyflie.param.set_value('flightmode.althold', false)
+```
+Once you turn hover mode off, the Crazyflie requires that you immediately apply thrust, or it will just drop like an unpowered PCB from the air. You have been warned...
 
 ## Contributing
 
