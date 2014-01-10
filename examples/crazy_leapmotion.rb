@@ -1,6 +1,6 @@
 require 'artoo'
 
-connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
+connection :crazyflie, :adaptor => :crazyflie
 device :drone, :driver => :crazyflie, :connection => :crazyflie
 
 connection :leap, :adaptor => :leapmotion, :port => '127.0.0.1:6437'

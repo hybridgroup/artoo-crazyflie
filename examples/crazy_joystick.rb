@@ -1,6 +1,6 @@
 require 'artoo'
 
-connection :crazyflie, :adaptor => :crazyflie, :supports_hover => true
+connection :crazyflie, :adaptor => :crazyflie
 device :drone, :driver => :crazyflie, :connection => :crazyflie, :interval => 0.01
 
 connection :joystick, :adaptor => :joystick
